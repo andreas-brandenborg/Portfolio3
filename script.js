@@ -1,32 +1,57 @@
 // When clicking the Check! button check if what the user wrote in the input matches the number they have to guess
 // Random Number
 
+//Random Number
 const randomNumber = Math.floor(Math.random() * 20);
 console.log(randomNumber)
 
-// 2. få fat i Input
+//Global scope variables
 const userGuess = document.querySelector("input.guess")
-
-// 3. Få fat i check-knappen
 const checkButton = document.querySelector("button.check")
+const highscore = document.querySelector("span.highscore")
+const questionMarkNumber = document.querySelector("div.number")
+let score = 0
 
-score = 1
-
-// 4. lyt efter knappen
+//Checks if checkButton is clicked and runs if statements
 checkButton.addEventListener("click", () => {
-        console.log(userGuess.value)
-    if (parseInt(userGuess.value) === randomNumber) {
-        console.log(score)
+    //Shows alert if userGuess is not between 0-20
+    const userGuessValue = parseInt(userGuess.value)
+    if (userGuessValue > 20 || userGuessValue < 0) {
+        alert("Number needs to be between 0-20")
+        score--
+        userGuess.value = ""
+    }
+   else if (userGuessValue !== Number) {
+        alert("Needs to be a number")
+    }
+    //if userGuess is correct clears input and shows randomNumber in div.number
+    else if (userGuessValue === randomNumber) {
+        userGuess.value = "";
+        questionMarkNumber.textContent = `${randomNumber}`;
+
+        //if score is smaller than highscore sets highscore to current score
+        if (parseInt(highscore.textContent) < score) {
+            highscore.textContent = `${score}`
+        }
+    //If userGuess is not equal to randomNumber increase score and clears input
+
     } else {
         score++
+        const currentScore = document.querySelector("span.score")
+        currentScore.textContent = `${score}`
         userGuess.value = "";
+
     }
 })
 
+//If again is clicked refresh page
+const againBtn = document.querySelector("button.again")
+againBtn.addEventListener("click", () => {
+    location.reload();
+    }
+)
 
-// If it is correct and smaller than Highscore set the new score as the highscore and clear the input. Also show the correct number in the ?
 
-// If the Again button is clicked clear the score and the highscore and start from scratch
 
 // If the user writes a number that is not between 1 - 20, then an error message should be shown to the user. Or if the user writes something that is not a number
 
