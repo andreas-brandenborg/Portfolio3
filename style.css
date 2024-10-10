@@ -117,3 +117,21 @@ h1 {
 .label-score {
     margin-bottom: 2rem;
 }
+
+.current-guesses {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+ul.guesses-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+}
+
+li.current-guesses-list {
+    list-style: none;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 20px;
+    display: flex;
+}
